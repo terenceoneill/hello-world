@@ -53,6 +53,24 @@ function addFooter(slide) {
 }
 
 // -----------------------------------------------------------------------------
+// SLIDE 0: Plain Title Slide
+// -----------------------------------------------------------------------------
+const slide0 = createBaseSlide();
+
+slide0.addText("Researching Your Venture", {
+  x: 0.8, y: 2.6, w: 11.7, h: 1.0,
+  fontFace: FONTS.header, fontSize: 40, bold: true, color: COLORS.textMain, align: "center"
+});
+slide0.addText("EGR 440", {
+  x: 0.8, y: 3.6, w: 11.7, h: 0.5,
+  fontFace: FONTS.body, fontSize: 20, color: COLORS.textMuted, align: "center"
+});
+slide0.addText("Terence O'Neill  |  Entrepreneurship Librarian, MSU Libraries", {
+  x: 0.8, y: 4.6, w: 11.7, h: 0.4,
+  fontFace: FONTS.body, fontSize: 16, color: COLORS.textMain, align: "center"
+});
+
+// -----------------------------------------------------------------------------
 // SLIDE 1: Title & Engineering Assumption Trap
 // -----------------------------------------------------------------------------
 const slide1 = createBaseSlide();
