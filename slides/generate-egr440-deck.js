@@ -424,6 +424,53 @@ mediaCards.forEach((card, idx) => {
 addFooter(slide6);
 
 // -----------------------------------------------------------------------------
+// SLIDE 6B: Resource Links
+// -----------------------------------------------------------------------------
+const slide6b = createBaseSlide();
+addHeader(slide6b, "Keep Going: Library Resources", "Resources");
+
+const resourceLinks = [
+  {
+    title: "ENTREPRENEURSHIP RESEARCH GUIDE",
+    desc: "Databases, search tips, and help for market and industry research.",
+    url: "https://libguides.lib.msu.edu/entrepreneur",
+    label: "libguides.lib.msu.edu/entrepreneur",
+    color: COLORS.accent
+  },
+  {
+    title: "MSU LIBRARIES MAKERSPACE",
+    desc: "Equipment and support for building and testing your prototype.",
+    url: "https://lib.msu.edu/makerspace",
+    label: "lib.msu.edu/makerspace",
+    color: COLORS.accentAlt
+  }
+];
+
+resourceLinks.forEach((link, idx) => {
+  const xPos = 0.8 + (idx * 6.0);
+  slide6b.addShape(pptx.shapes.RECTANGLE, {
+    x: xPos, y: 2.0, w: 5.7, h: 3.4,
+    fill: { color: COLORS.cardBg }, line: { color: link.color, width: 1.5 }
+  });
+  slide6b.addText(link.title, {
+    x: xPos + 0.4, y: 2.4, w: 4.9, h: 0.4,
+    fontFace: FONTS.header, fontSize: 18, bold: true, color: link.color
+  });
+  slide6b.addText(link.desc, {
+    x: xPos + 0.4, y: 3.0, w: 4.9, h: 1.0,
+    fontFace: FONTS.body, fontSize: 15, color: COLORS.textMain, valign: "top"
+  });
+  slide6b.addText([
+    { text: link.label, options: { hyperlink: { url: link.url, tooltip: link.url }, color: COLORS.textMain, underline: { style: "sng" } } }
+  ], {
+    x: xPos + 0.4, y: 4.4, w: 4.9, h: 0.5,
+    fontFace: FONTS.body, fontSize: 16, bold: true
+  });
+});
+
+addFooter(slide6b);
+
+// -----------------------------------------------------------------------------
 // SLIDE 7: The Frozen Close
 // -----------------------------------------------------------------------------
 const slide7 = createBaseSlide();
