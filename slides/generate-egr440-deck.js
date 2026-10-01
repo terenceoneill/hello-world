@@ -281,6 +281,88 @@ slide5.addText("CRITICAL RULE: Always prime LLMs with library database context. 
 addFooter(slide5);
 
 // -----------------------------------------------------------------------------
+// SLIDE 5B: CRAFT Starter Prompts (Basic Progression)
+// -----------------------------------------------------------------------------
+const slide5b = createBaseSlide();
+addHeader(slide5b, "CRAFT Starter Prompts: Brainstorm → Search → Make Sense", "AI Engine");
+
+// Turns [["plain text", "TAG"], ...] into styled text runs
+function craftRuns(parts) {
+  const runs = [];
+  parts.forEach(([text, tag]) => {
+    runs.push({ text, options: { color: COLORS.textMain } });
+    if (tag) runs.push({ text: ` [${tag}]`, options: { color: COLORS.accent, bold: true } });
+  });
+  return runs;
+}
+
+const starterPrompts = [
+  {
+    step: "01",
+    label: "BRAINSTORM",
+    parts: [
+      ["\"Act as a startup mentor", "ROLE"],
+      [". I'm an engineering student with an idea for rentable food-production pods for small food makers", "CONTEXT"],
+      [". List 5 questions I should answer before building a prototype", "ACTION"],
+      [" as a numbered list", "FORMAT"],
+      [". Keep it simple and encouraging", "TONE"],
+      [".\"", null]
+    ]
+  },
+  {
+    step: "02",
+    label: "FIND KEYWORDS",
+    parts: [
+      ["\"Act as a research librarian", "ROLE"],
+      [". I'm researching the market for small-batch food manufacturing", "CONTEXT"],
+      [". Suggest 10 keywords and synonyms I can search in IBISWorld or Statista", "ACTION"],
+      [" as a table: keyword | why it helps", "FORMAT"],
+      [". Plain and practical", "TONE"],
+      [".\"", null]
+    ]
+  },
+  {
+    step: "03",
+    label: "MAKE SENSE OF A SOURCE",
+    parts: [
+      ["\"Act as a teaching assistant", "ROLE"],
+      [". Below is a section of an IBISWorld report I pasted in", "CONTEXT"],
+      [". Explain the 3 most important takeaways for a new business", "ACTION"],
+      [" in 3 short bullet points", "FORMAT"],
+      [". Plain language, no jargon", "TONE"],
+      [".\"", null]
+    ]
+  }
+];
+
+starterPrompts.forEach((p, idx) => {
+  const yPos = 1.6 + (idx * 1.6);
+  slide5b.addShape(pptx.shapes.RECTANGLE, {
+    x: 0.8, y: yPos, w: 11.7, h: 1.4,
+    fill: { color: COLORS.cardBg }, line: { color: idx === 2 ? COLORS.accent : COLORS.border, width: idx === 2 ? 1.5 : 1 }
+  });
+  slide5b.addText(p.step, {
+    x: 1.1, y: yPos + 0.2, w: 2.2, h: 0.4,
+    fontFace: FONTS.header, fontSize: 20, bold: true, color: COLORS.accentAlt
+  });
+  slide5b.addText(p.label, {
+    x: 1.1, y: yPos + 0.65, w: 2.2, h: 0.6,
+    fontFace: FONTS.body, fontSize: 12, bold: true, color: COLORS.textMuted, charSpacing: 1, valign: "top"
+  });
+  slide5b.addText(craftRuns(p.parts), {
+    x: 3.4, y: yPos + 0.15, w: 8.8, h: 1.1,
+    fontFace: FONTS.body, fontSize: 14, lineSpacing: 20, valign: "middle"
+  });
+});
+
+slide5b.addText("Prompt 03 is the habit to build: paste the library source in first, then ask.", {
+  x: 0.8, y: 6.4, w: 11.7, h: 0.4,
+  fontFace: FONTS.body, fontSize: 13, italic: true, color: COLORS.textMuted, align: "center"
+});
+
+addFooter(slide5b);
+
+// -----------------------------------------------------------------------------
 // SLIDE 6: High-Signal Deep Tech Signal (Acquired & Core Memory)
 // -----------------------------------------------------------------------------
 const slide6 = createBaseSlide();
